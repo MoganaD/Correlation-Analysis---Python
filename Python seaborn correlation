@@ -1,0 +1,52 @@
+#1.Mount drive
+from google.colab import drive
+drive.mount('/content/drive')
+
+#2.load dataset from drive
+import pandas as pd
+df5= pd.read_csv("/content/drive/My Drive/data5.csv",encoding ='latin1')
+
+..............................................................................
+#3.Correlation plot using seaborn package (sns), matplotlib for visualisation
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#3.1 with regression
+sns.pairplot(df, kind="reg")
+plt.show()
+
+# with color and correlation by one variable (ex: ethnicity)
+sns.pairplot(df5, kind="scatter", hue="Ethnicity", markers=["o", "s", "D"], palette="Set2")
+plt.show()
+
+#3.2 without regression
+sns.pairplot(df5, kind="scatter")
+plot.show()
+
+.............................................................................
+#4.Correlation heatmap
+
+corr = df5.corr()
+
+ax = sns.heatmap(
+
+    corr, 
+
+    vmin=-1, vmax=1, center=0,
+
+    cmap=sns.diverging_palette(20, 220, n=200),
+
+    square=True
+
+)
+
+ax.set_xticklabels(
+
+    ax.get_xticklabels(),
+
+    rotation=45,
+
+    horizontalalignment='right'
+
+);
